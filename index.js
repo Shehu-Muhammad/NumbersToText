@@ -1,46 +1,48 @@
 document.getElementById("btn").addEventListener("click", display);
 
 var text = '';
-var textLength = '';
 var textArr = [];
 var result = [];
 
 function display() {
     text = document.querySelector("input").value;
-    textLength = text.length;
-    if(textLength == 1)
-    {
-        if(isNaN(parseInt(text, 10)) == false)
+    let num = parseInt(text);
+
+    if(isNaN(num) == false) {
+        let numText = num.toString();
+        let numLength = numText.length;
+        if(numLength == 1)
         {
-            first(text);
+            first(numText);
             console.log(textArr);
-            textArr = [];
-        }
-    
-    } else if(textLength == 2) {
-        if(isNaN(parseInt(text, 10)) == false)
-        {
-            let num = parseInt(text);
+            textArr = [];        
+        } else if(numLength == 2) {
+            let num3 = numText.substring(2,1);
             if(num < 20) 
             {
-                first(`${num}`);
+                first(numText);
                 console.log(textArr);
                 textArr = [];
-            } else if (num >= 20 && text.substring(2,1) == 0) {
-                second(`${num}`);
+            } else if (num >= 20 &&  num3 == 0) {
+                second(numText);
                 console.log(textArr);
                 textArr = [];
-            } else if(num >= 20 && text.substring(2,1) != 0) {
-                let num1 = parseInt(text.substring(0,1))*10;
-                let num2 = parseInt(text.substring(2,1));
-                second(`${num1}`);
-                first(`${num2}`);
-                console.log(textArr);
-                textArr = [];
-            }
-        }         
-     } else {
-        console.log("The text string has a length greater than 1.")
+            } else if(num >= 20) {
+                let num1 = parseInt(numText.substring(0,1))*10;
+                let num2 = parseInt(num3);
+                if(num2 != 0)
+                {
+                    second(`${num1}`);
+                    first(`${num2}`);
+                    console.log(textArr);
+                    textArr = [];
+                }
+            }    
+        } else {
+            console.log("The text string has a length greater than 2.")
+        }
+    } else {
+        console.log("The text string entered is not a number.")
     }
 }
 
