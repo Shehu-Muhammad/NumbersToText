@@ -2,7 +2,6 @@ document.getElementById("btn").addEventListener("click", display);
 
 var text = '';
 var textArr = [];
-var result = [];
 
 function display() {
     text = document.querySelector("input").value;
@@ -15,6 +14,7 @@ function display() {
         {
             first(numText);
             console.log(textArr);
+            arrayToString(textArr);
             textArr = [];        
         } else if(numLength == 2) {
             let num3 = numText.substring(2,1);
@@ -22,10 +22,12 @@ function display() {
             {
                 first(numText);
                 console.log(textArr);
+                arrayToString(textArr);
                 textArr = [];
             } else if (num >= 20 &&  num3 == 0) {
                 second(numText);
                 console.log(textArr);
+                arrayToString(textArr);
                 textArr = [];
             } else if(num >= 20) {
                 let num1 = parseInt(numText.substring(0,1))*10;
@@ -35,6 +37,7 @@ function display() {
                     second(`${num1}`);
                     first(`${num2}`);
                     console.log(textArr);
+                    arrayToString(textArr);
                     textArr = [];
                 }
             }    
@@ -43,6 +46,15 @@ function display() {
         }
     } else {
         console.log("The text string entered is not a number.")
+    }
+}
+
+function arrayToString(param) {
+    let result = document.getElementById("result");
+    result.innerHTML = "";
+    for(let i = 0; i < param.length; i++) 
+    {
+        result.innerHTML += param[i] + " ";
     }
 }
 
