@@ -43,11 +43,42 @@ function display() {
                 }
             }
         } else if(numLength == 3) {
-            //check first value - use first array, add hundred to array
-            //check second value and third value to see if they are 0
-            //if they are 0, you're done
-            //if the second value isn't 0 and 3rd value is 0, use first array
-            //if the third value isn't 0, use the second array
+            let num1 = parseInt(numText.substring(0,1));
+            let num2 = parseInt(numText.substring(1,2));
+            let num3 = parseInt(numText.substring(2,3));
+            let num4 = parseInt(numText.substring(1,3));
+            first(`${num1}`);
+            textArr.push('hundred');
+            if(num2 == 0 && num3 == 0)
+            {
+                arrayToString(textArr, result);
+                textArr = [];
+            } else if(num2 != 0 && num3 == 0) {
+                textArr.push('and');
+                second(`${num4}`);
+                arrayToString(textArr, result);
+                textArr = [];
+            } else if(num2 != 0 && num3 != 0) {
+                if(num4 < 20)
+                {
+                    textArr.push('and');
+                    first(`${num4}`);
+                    arrayToString(textArr, result);
+                    textArr = [];
+                } else if(num4 >= 20) {
+                    textArr.push('and');
+                    second(`${num2*10}`);
+                    first(`${num3}`);
+                    arrayToString(textArr, result);
+                    textArr = [];
+                }
+            } else if(num2 == 0 && num3 != 0) {
+                textArr.push('and');
+                first(`${num4}`);
+                arrayToString(textArr, result);
+                textArr = [];
+            }
+            
         } else {
             result.innerHTML = "The text string has a length greater than 3.";
             console.log("The text string has a length greater than 3.");
